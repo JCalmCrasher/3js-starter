@@ -12,6 +12,20 @@ const gui = new dat.GUI();
 
 // Canvas
 const canvas = document.querySelector("canvas.webgl");
+let speed = 0.3;
+
+// button
+const button = document.querySelector("#increase-rotation");
+button.addEventListener("click", () => {
+ speed += 0.1;
+});
+
+const decreaseBtn = document.querySelector("#decrease-rotation");
+decreaseBtn.addEventListener("click", () => {
+ if (speed > 0.3) {
+  speed -= 0.1;
+ }
+});
 
 // Scene
 const scene = new THREE.Scene();
@@ -27,7 +41,7 @@ const material = new THREE.MeshStandardMaterial();
 material.metalness = 0.7;
 material.roughness = 0.2;
 material.normalMap = normalTexture;
-material.color = new THREE.Color(0x1111ff);
+material.color = new THREE.Color(0x11ddff);
 
 const material2 = new THREE.MeshStandardMaterial();
 material2.metalness = 0.7;
@@ -176,7 +190,7 @@ const tick = () => {
  const elapsedTime = clock.getElapsedTime();
 
  // Update objects
- sphere.rotation.y = 0.3 * elapsedTime;
+ sphere.rotation.y = speed * elapsedTime;
  sphere.rotation.y += 0.5 * (targetX - sphere.rotation.y);
  sphere.rotation.x += 0.05 * (targetY - sphere.rotation.x);
  sphere.position.z += -0.05 * (targetY - sphere.rotation.x);

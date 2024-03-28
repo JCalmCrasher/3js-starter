@@ -37,3 +37,9 @@ h1 {
 section {
  height: 100vh;
 }
+
+#manage-element {
+ z-index: 9999;
+ position: absolute;
+ top: 80%;
+}
